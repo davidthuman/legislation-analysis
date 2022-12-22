@@ -1,0 +1,47 @@
+if (!window.rsConf) { window.rsConf = {}; }
+if (!window.rsConf.settings) { window.rsConf.settings = {}}
+
+window.rsConf.settings.hlicon = 'iconoff';
+
+if (!window.rsConf.general) { window.rsConf.general = {}}
+
+window.rsConf.general.cookieLifetime = null;
+
+window.rsConf.phrases||(window.rsConf.phrases={});
+window.rsConf.phrases.en_us||(window.rsConf.phrases.en_us={});
+window.rsConf.phrases.en_us.toubody||(window.rsConf.phrases.en_us.toubody="<p>The audio file you are about to download can be used for personal use. You are responsible for clearing any rights for your usage of the audio file you are about to download. By clicking Agree, you are downloading a file from ReadSpeaker, a third party server. The Library of Congress is not responsible for any errors in the resulting audio.</p>");
+
+ReadSpeaker.q(function() {
+    ReadSpeaker.Common.addEvent('onSelectedText', function(e) {
+        ReadSpeaker.Common.data.selectedText = '';
+    });
+});
+
+// metrics tracking for readspeaker interactions
+window.rsConf = {
+    cb: {
+        ui: {
+            open: function() {
+                trackUserInteraction($(this), 'Accessibility Reader', 'click', 'Open player'); 
+                $('.rsbtn_dl').off('click.cdg').on('click.cdg', function(event) {
+                    $('#rsdl_button_accept').off('click.cdg').on('click.cdg', function(event) {
+                        trackUserInteraction($(this), 'Accessibility Reader', 'click', 'Download audio file');
+                    });
+                });
+            },
+            play: function() {
+                trackUserInteraction($(this), 'Accessibility Reader', 'click', 'Play audio');
+
+            },
+            pause: function() {
+                trackUserInteraction($(this), 'Accessibility Reader', 'click', 'Pause audio');
+            },
+            stop: function() {
+                trackUserInteraction($(this), 'Accessibility Reader', 'click', 'Stop audio');
+            },
+            beforeclose: function() {
+                trackUserInteraction($(this), 'Accessibility Reader', 'click', 'Close player');
+            }
+        }
+    }
+};

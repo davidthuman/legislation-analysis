@@ -1,0 +1,39 @@
+
+https://www.nltk.org/
+
+https://www.nltk.org/book/
+
+
+what is a Word2Vec Model?
+    attempts to predict an unknown word, using context words that surround it
+    assumes that words that appear is similar contexts have the same meaning
+
+
+labeling is expensive, so we have apply clustering and then label a sample from the cluster
+    clustering: k-means (seen as top-down) or hierarchical (seen as bottom-up)
+
+""Improving law interpretability using NLP" by Serena Peruzzo" - https://www.youtube.com/watch?v=c-WTaLX4QzU
+
+    I have no labelled data available
+    Laws are written in a very specific way
+        Some bullet-points
+        Many references, which will break language parsers and tokenization.
+        Syntactic complexity, non-linear sentences
+
+    MLP PIPELINE
+    Tokenizer -> Lemmatizer -> Tagger -> Parser
+    Break up text -> Connect to root meaning -> Tag its part-of-speech -> Determine grammatical structure
+
+    Python Library: spaCy
+    Wordnet - > groups synonyms connected by semantic relationships
+
+    The Dependency Parser produces a tree to represent the sentences, using grammatical-logic to buid it. This is very good at describing "burdens" that
+    appear frequently in laws, i.e. 'this organization' shall do 'that actions'
+
+    Global Vectorization of words ( Vec(King) - Vec(Man) + Vec(Woman) = Vec(Queen) )
+    What dimension will you represent your vectors in?  Spectral embedding helps to lower dimensions
+
+    Her Github: https://github.com/bardess/odsc_2019_workshop
+
+    Training your own word vector technology
+
